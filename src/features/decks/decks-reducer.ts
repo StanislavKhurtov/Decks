@@ -25,6 +25,7 @@ export const decksReducer = (state: DecksState = initialState, action: ActionTyp
 
 export const fetchDecksAC = (decks: Deck[]) => ({ type: 'FETCH-DECKS', decks } as const)
 
+
 type ActionType = DecksAction
 
 type DecksAction = ReturnType<typeof fetchDecksAC>
