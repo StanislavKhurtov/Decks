@@ -1,13 +1,24 @@
 import s from './DeckItem.module.css'
+import { Deck } from '../../decks-api.ts'
+import { useAppDispatch } from '../../../../app/store.ts'
+import { removeDeckTC, updateDeckTC } from '../../decks-thunks.ts'
 
 type DeckProps = {
-  deck: any // todo: fix
+  deck: Deck
 }
 
 const TEST_ACC_NAME = 'Получилось '
 
 export const DeckItem = ({ deck }: DeckProps) => {
   const isTestingDeck = deck.author.name === TEST_ACC_NAME
+  const dispatch = useAppDispatch()
+  const onClickHandler = () => {
+    dispatch(removeDeckTC(deck.id))
+  }
+
+  const updateHandler = () => {
+    dispatch(updateDeckTC(deck.id, 'New Title'))
+  }
 
   return (
     <li className={s.item}>
@@ -25,10 +36,10 @@ export const DeckItem = ({ deck }: DeckProps) => {
         <b>Updated:</b> {new Date(deck.updated).toLocaleString('ru-Ru')}
       </p>
 
-      {isTestingDeck && (
+      {!isTestingDeck && (
         <div className={s.buttonBox}>
-          <button>update</button>
-          <button>delete</button>
+          <button onClick={updateHandler}>update</button>
+          <button onClick={onClickHandler}>delete</button>
         </div>
       )}
     </li>
