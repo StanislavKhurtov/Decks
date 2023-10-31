@@ -13,6 +13,12 @@ export const decksAPI = {
   addDeck(name: string) {
     return instance.post<Deck>(`decks`, { name })
   },
+  updateDeck(id: string, name: string) {
+    return instance.patch(`decks/${id}`, { name })
+  },
+  removeDeck(id: string) {
+    return instance.delete(`decks/${id}`)
+  },
 }
 
 export type FetchDecksResponse = {
