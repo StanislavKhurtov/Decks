@@ -1,7 +1,7 @@
 import { Deck } from '../decks/decks-api.ts'
 
 const initialState = {
-  decks: [] as Deck[], // todo: add type
+  decks: [] as Deck[],
   searchParams: {
     name: '',
   },
@@ -22,8 +22,9 @@ export const decksReducer = (state: DecksState = initialState, action: ActionTyp
   }
 }
 
-export const fetchDecksAC = (decks: Deck[]) => ({ type: 'FETCH-DECKS', decks } as const)
-//export const addDeckAC = (deck: Deck) => ({ type: 'ADD-DECKS', deck } as const)
+export const fetchDecksAC = (decks: Deck[]) => ({ type: 'FETCH-DECKS'as const, decks })
+
+//export const addDeckAC = (deck: Deck) => ({ type: 'ADD-DECKS' as const, deck })
 
 
 type ActionType = DecksAction
